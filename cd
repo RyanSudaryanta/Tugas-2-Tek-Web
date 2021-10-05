@@ -1,0 +1,17 @@
+Laravel Installer [32m4.2.8[39m
+
+[33mUsage:[39m
+  command [options] [arguments]
+
+[33mOptions:[39m
+  [32m-h, --help[39m            Display help for the given command. When no command is given display help for the [32mlist[39m command
+  [32m-q, --quiet[39m           Do not output any message
+  [32m-V, --version[39m         Display this application version
+  [32m    --ansi|--no-ansi[39m  Force (or disable --no-ansi) ANSI output
+  [32m-n, --no-interaction[39m  Do not ask any interactive question
+  [32m-v|vv|vvv, --verbose[39m  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+[33mAvailable commands:[39m
+  [32mhelp[39m  Display help for a command
+  [32mlist[39m  List commands
+  [32mnew[39m   Create a new Laravel application
