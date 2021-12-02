@@ -11,7 +11,7 @@
     <meta name="keywords" content="keywords,here">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet"> <!--Replace with your tailwind.css once created-->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
 
@@ -21,9 +21,9 @@
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
 
     <!--Nav-->
-    <nav class="bg-grey-500 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
+    <nav class="bg-grey-500 pt-2 md:pt-1 pb-1 mt-0 h-auto fixed w-full z-20 top-0">
 
-        <div class="flex flex-wrap items-center">
+        <div class="flex flex-wrap items-center bg-gray-900">
 
 
             <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
@@ -45,7 +45,7 @@
                     </li>
                     <li class="flex-1 md:flex-none md:mr-3">
                         <div class="relative inline-block">
-                            <button onclick="toggleDD('myDropdown')" class="drop-button text-white focus:outline-none"> <span class="pr-2"><i class="em em-robot_face"></i></span> Hi, User <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <button onclick="toggleDD('myDropdown')" class="drop-button text-white focus:outline-none"> <span class="pr-2"><i class="em em-robot_face"></i></span> Hi, Admin <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg></button>
                             <div id="myDropdown" class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
                                 <input type="text" class="drop-search p-2 text-gray-600" placeholder="Search.." id="myInput" onkeyup="filterDD('myDropdown','myInput')">
@@ -70,23 +70,28 @@
             <div class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
                 <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
                     <li class="mr-3 flex-1">
-                        <a href="{{route("admin")}}" class="{{(request()->routeIs('admin'))}} block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                            <i class="fas fa-tasks pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Admin</span>
+                        <a href="{{route('admin')}}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-tasks pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Dashboard</span>
                         </a>
                     </li>
                     <li class="mr-3 flex-1">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
-                            <i class="fa fa-envelope pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-sm text-gray-600 md:text-gray-400 block md:inline-block">Kontak Masuk</span>
+                        <a href="{{route('user')}}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
+                            <i class="fa fa-envelope pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-sm text-gray-600 md:text-gray-400 block md:inline-block">User</span>
                         </a>
                     </li>
                     <li class="mr-3 flex-1">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-blue-600">
-                            <i class="fas fa-chart-area pr-0 md:pr-3 text-blue-600"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Analis Fintech</span>
+                        <a href="{{route('pinjaman')}}" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
+                            <i class="fa fa-wallet pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Pinjaman</span>
                         </a>
                     </li>
                     <li class="mr-3 flex-1">
-                        <a href="#" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
-                            <i class="fa fa-wallet pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Pembayaran</span>
+                        <a href="{{route('pengembalian')}}" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
+                            <i class="fa fa-wallet pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Pengembalian</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="{{route('analisis')}}" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-500">
+                            <i class="fas fa-chart-area pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Analis Fintech</span>
                         </a>
                     </li>
                 </ul>
@@ -99,173 +104,11 @@
 
             <div class="bg-gray-800 pt-3">
                 <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-                    <h3 class="font-bold pl-2">Analis Fintech</h3>
+                    <h3 class="font-bold pl-2">{{$header}}</h3>
                 </div>
             </div>
 
-            <div class="flex flex-wrap">
-                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                    <!--Metric Card-->
-                    <div class="bg-gradient-to-b from-yellow-600 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded-full p-5 bg-yellow-600"><span class="text-white"><i class="far fa-money-bill-alt"></i></span></div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Total Pendapatan </h5>
-                                <h3 class="font-bold text-3xl">Rp.10.000.000 <span class="text-yellow-500"><i class="fas fa-caret-up"></i></span></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Metric Card-->
-                </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                    <!--Metric Card-->
-                    <div class="bg-gradient-to-b from-green-600 to-pink-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded-full p-5 bg-green-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Total Users</h5>
-                                <h3 class="font-bold text-3xl">300 <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Metric Card-->
-                </div>
-                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                    <!--Metric Card-->
-                    <div class="bg-gradient-to-b from-indigo-600 to-white-100 border-b-4 border-indigo-600 rounded-lg shadow-xl p-5">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded-full p-5 bg-indigo-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Pendaftar Fintech</h5>
-                                <h3 class="font-bold text-3xl">5 <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Metric Card-->
-                </div>
-
-            <div class="flex flex-row flex-wrap flex-grow mt-2">
-
-                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                    <!--Graph Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-xl">
-                        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
-                        </div>
-                        <div class="p-5">
-                            <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
-                                new Chart(document.getElementById("chartjs-7"), {
-                                    "type": "bar",
-                                    "data": {
-                                        "labels": ["January", "February", "March", "April"],
-                                        "datasets": [{
-                                            "label": "Page Impressions",
-                                            "data": [10, 20, 30, 40],
-                                            "borderColor": "rgb(255, 99, 132)",
-                                            "backgroundColor": "rgba(255, 99, 132, 0.2)"
-                                        }, {
-                                            "label": "Adsense Clicks",
-                                            "data": [5, 15, 10, 30],
-                                            "type": "line",
-                                            "fill": false,
-                                            "borderColor": "rgb(54, 162, 235)"
-                                        }]
-                                    },
-                                    "options": {
-                                        "scales": {
-                                            "yAxes": [{
-                                                "ticks": {
-                                                    "beginAtZero": true
-                                                }
-                                            }]
-                                        }
-                                    }
-                                });
-                            </script>
-                        </div>
-                    </div>
-                    <!--/Graph Card-->
-                </div>
-
-                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                    <!--Graph Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-xl">
-                        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
-                        </div>
-                        <div class="p-5">
-                            <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
-                                new Chart(document.getElementById("chartjs-0"), {
-                                    "type": "line",
-                                    "data": {
-                                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                                        "datasets": [{
-                                            "label": "Views",
-                                            "data": [65, 59, 80, 81, 56, 55, 40],
-                                            "fill": false,
-                                            "borderColor": "rgb(75, 192, 192)",
-                                            "lineTension": 0.1
-                                        }]
-                                    },
-                                    "options": {}
-                                });
-                            </script>
-                        </div>
-                    </div>
-                    <!--/Graph Card-->
-                </div>
-
-                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                    <!--Table Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-xl">
-                        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
-                        </div>
-                        <div class="p-5">
-                            <table class="w-full p-5 text-gray-700">
-                                <thead>
-                                    <tr>
-                                        <th class="text-left text-blue-900">Name</th>
-                                        <th class="text-left text-blue-900">Pinjaman</th>
-                                        <th class="text-left text-blue-900">Bunga Pinjaman</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>Aku Jelek</td>
-                                        <td>1.000.000</td>
-                                        <td>5%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Aku Tampan</td>
-                                        <td>5.000.000</td>
-                                        <td>5%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Aku Ganteng</td>
-                                        <td>7.000.000</td>
-                                        <td>5%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <p class="py-2"><a href="#">Dan Beberapa...</a></p>
-
-                        </div>
-                    </div>
-                    <!--/table Card-->
-                </div>
-
-            </div>
+                {{$slot}}
         </div>
     </div>
 
