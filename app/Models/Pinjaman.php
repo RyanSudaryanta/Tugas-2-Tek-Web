@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Pinjaman extends Model
 {
@@ -12,8 +13,16 @@ class Pinjaman extends Model
     protected $primaryKey = 'id';
     protected $guarded = [];
 
-    public function PinjamanPelanggan()
+    // public function PinjamanPelanggan()
+    // {
+    //     return $this->belongsTo(Pelanggan::class, 'pelanggan_id', 'id');
+    // }
+
+    static function getPijaman()
     {
-        return $this->belongsTo(Pelanggan::class, 'pelanggan_id', 'id');
+        $return = DB::table('pinjaman')
+                ->join('pelanggan', 'pinjaman.pelanggan_id', '=', 'pelanggan.id');
+
+        return $return;
     }
 }

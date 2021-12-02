@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Pengembalian extends Model
 {
@@ -12,8 +13,16 @@ class Pengembalian extends Model
     protected $primaryKey = 'id';
     protected $guarded = [];
 
-    public function pengembalianPelanggan()
+    // public function pengembalianPelanggan()
+    // {
+    //     return $this->belongsTo(Pelanggan::class, 'pelanggan_id', 'id');
+    // }
+
+    static function getPengembalian()
     {
-        return $this->belongsTo(Pelanggan::class, 'pelanggan_id', 'id');
+        $return = DB::table('pengembalian')
+                ->join('pelanggan', 'pengembalian.pelanggan_id', '=', 'pelanggan.id');
+
+        return $return;
     }
 }
