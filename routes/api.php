@@ -21,10 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-Route::resource('pelanggan', PelangganController::class);
-
-Route::resource('pengembalian', PembelianController::class);
-
-Route::resource('pinjaman', PinjamanController::class);
+Route::resource('barang', Barang::class)->except(['create', 'edit']);
+Route::resource('kategory', Kategory::class)->except(['create', 'edit']);
+Route::resource('transaksi', Transaksi::class)->except(['create', 'edit']);
